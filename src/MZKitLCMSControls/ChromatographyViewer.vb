@@ -42,7 +42,8 @@ Public Class ChromatographyViewer
         Dim theme As New Theme With {
             .padding = plotPadding.ToString,
             .drawLabels = True,
-            .tagCSS = "font-style: normal; font-size: 24; font-family: " & FontFace.BookmanOldStyle & ";"
+            .tagCSS = "font-style: normal; font-size: 24; font-family: " & FontFace.BookmanOldStyle & ";",
+            .tagColor = "red"
         }
         Dim size_str As String = $"{PictureBox1.Width * scaleFactor},{PictureBox1.Height * scaleFactor}"
         Dim title As String = Me.Title
