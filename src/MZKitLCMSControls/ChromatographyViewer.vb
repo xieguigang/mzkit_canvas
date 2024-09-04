@@ -28,11 +28,22 @@ Public Class ChromatographyViewer
     ''' <returns></returns>
     Public Property Overlaps As NamedCollection(Of ChromatogramTick)()
 
+    Public ReadOnly Property ChromatographyPlot As Image
+        Get
+            Return PictureBox1.BackgroundImage
+        End Get
+    End Property
+
     Private Sub Rendering()
         Dim chromatography As TICplot
         Dim theme As New Theme With {.padding = plotPadding.ToString}
         Dim scale As Double = 2.5
         Dim size_str As String = $"{PictureBox1.Width * scale},{PictureBox1.Height * scale}"
+        Dim title As String = Me.Title
+
+        If title.StringEmpty(, True) Then
+            title = "Chromatography Plot"
+        End If
 
         If Overlaps.IsNullOrEmpty Then
             chromatography = New TICplot(New NamedCollection(Of ChromatogramTick)(Title, Me.chromatography), Nothing, 0, isXIC:=True, fillAlpha:=255, fillCurve:=False, labelLayoutTicks:=-1, bspline:=2, theme:=theme)
@@ -49,6 +60,7 @@ Public Class ChromatographyViewer
 
     Public Sub SetChromatography(data As IEnumerable(Of ChromatogramTick))
         chromatography = data.ToArray
+        Rendering()
     End Sub
 
     Public Sub SetPlotPadding(padding As Padding)
