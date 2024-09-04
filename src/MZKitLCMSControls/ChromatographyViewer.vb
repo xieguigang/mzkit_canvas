@@ -6,7 +6,6 @@ Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.MIME.Html.CSS
-Imports Microsoft.VisualBasic.MIME.Html.Render
 
 Public Class ChromatographyViewer
 
@@ -15,7 +14,7 @@ Public Class ChromatographyViewer
     ''' </summary>
     Dim chromatography As ChromatogramTick()
     Dim plotPadding As Padding = $"padding: 100px 100px 200px 250px;"
-    Dim scale As Double = 2
+    Dim scaleFactor As Double = 2
 
     Public Property XLabel As String = "Rentention Time(s)"
     Public Property YLabel As String = "Intensity"
@@ -40,8 +39,11 @@ Public Class ChromatographyViewer
 
     Private Sub Rendering()
         Dim chromatography As TICplot
-        Dim theme As New Theme With {.padding = plotPadding.ToString}
-        Dim size_str As String = $"{PictureBox1.Width * scale},{PictureBox1.Height * scale}"
+        Dim theme As New Theme With {
+            .padding = plotPadding.ToString,
+            .drawLabels = True
+        }
+        Dim size_str As String = $"{PictureBox1.Width * scaleFactor},{PictureBox1.Height * scaleFactor}"
         Dim title As String = Me.Title
 
         If Me.chromatography.IsNullOrEmpty Then
@@ -87,8 +89,8 @@ Public Class ChromatographyViewer
         Dim canvas As Size = PictureBox1.BackgroundImage.Size
         Dim viewClient As New GraphicsRegion(canvas, plotPadding)
 
-        x = clientXy.X * scale
-        y = clientXy.Y * scale
+        x = clientXy.X * scaleFactor
+        y = clientXy.Y * scaleFactor
 
         ' translate to RT,intensity
         Dim view As Rectangle = viewClient.PlotRegion
@@ -114,11 +116,13 @@ Public Class ChromatographyViewer
         Dim x, y As Integer
         Dim rt, into As Double
 
+        Return
+
         Call TranslateViewLocation(x, y, rt, into)
 
         Using g As Graphics = PictureBox1.CreateGraphics
             Dim a As New Point(x, plotPadding.Top)
-            Dim b As New Point(x, PictureBox1.Height * scale - plotPadding.Bottom)
+            Dim b As New Point(x, PictureBox1.Height * scaleFactor - plotPadding.Bottom)
 
             Call g.DrawLine(Pens.Red, a, b)
             Call g.DrawString($"RT: {(rt / 60).ToString("F1")}min, intensity: {into.ToString("G4")}", New Font(FontFace.SegoeUI, 16), Brushes.Red, New PointF(x, y))
