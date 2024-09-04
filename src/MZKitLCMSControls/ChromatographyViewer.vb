@@ -41,6 +41,10 @@ Public Class ChromatographyViewer
         Dim size_str As String = $"{PictureBox1.Width * scale},{PictureBox1.Height * scale}"
         Dim title As String = Me.Title
 
+        If Me.chromatography.IsNullOrEmpty Then
+            Return
+        End If
+
         If title.StringEmpty(, True) Then
             title = "Chromatography Plot"
         End If
