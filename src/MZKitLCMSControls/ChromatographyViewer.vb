@@ -1,9 +1,12 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Axis
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.MIME.Html.CSS
+Imports Microsoft.VisualBasic.MIME.Html.Render
 
 Public Class ChromatographyViewer
 
@@ -12,6 +15,7 @@ Public Class ChromatographyViewer
     ''' </summary>
     Dim chromatography As ChromatogramTick()
     Dim plotPadding As Padding = $"padding: 100px 100px 200px 250px;"
+    Dim scale As Double = 2
 
     Public Property XLabel As String = "Rentention Time(s)"
     Public Property YLabel As String = "Intensity"
@@ -37,7 +41,6 @@ Public Class ChromatographyViewer
     Private Sub Rendering()
         Dim chromatography As TICplot
         Dim theme As New Theme With {.padding = plotPadding.ToString}
-        Dim scale As Double = 2.5
         Dim size_str As String = $"{PictureBox1.Width * scale},{PictureBox1.Height * scale}"
         Dim title As String = Me.Title
 
@@ -50,9 +53,9 @@ Public Class ChromatographyViewer
         End If
 
         If Overlaps.IsNullOrEmpty Then
-            chromatography = New TICplot(New NamedCollection(Of ChromatogramTick)(Title, Me.chromatography), Nothing, 0, isXIC:=True, fillAlpha:=255, fillCurve:=False, labelLayoutTicks:=-1, bspline:=2, theme:=theme)
+            chromatography = New TICplot(New NamedCollection(Of ChromatogramTick)(title, Me.chromatography), Nothing, 0, isXIC:=True, fillAlpha:=255, fillCurve:=False, labelLayoutTicks:=-1, bspline:=2, theme:=theme)
         Else
-            Dim overlaps = _Overlaps.Join(New NamedCollection(Of ChromatogramTick)(Title, Me.chromatography))
+            Dim overlaps = _Overlaps.Join(New NamedCollection(Of ChromatogramTick)(title, Me.chromatography))
             chromatography = New TICplot(overlaps, Nothing, 0, isXIC:=True, fillAlpha:=255, fillCurve:=False, labelLayoutTicks:=-1, bspline:=2, theme:=theme)
         End If
 
@@ -73,5 +76,52 @@ Public Class ChromatographyViewer
 
     Private Sub PictureBox1_SizeChanged(sender As Object, e As EventArgs) Handles PictureBox1.SizeChanged
         Call Rendering()
+    End Sub
+
+    Private Sub TranslateViewLocation(ByRef x As Integer, ByRef y As Integer, ByRef rt As Double, ByRef intensity As Double)
+        If PictureBox1.BackgroundImage Is Nothing Then
+            Return
+        End If
+
+        Dim clientXy = PictureBox1.PointToClient(Cursor.Position)
+        Dim canvas As Size = PictureBox1.BackgroundImage.Size
+        Dim viewClient As New GraphicsRegion(canvas, plotPadding)
+
+        x = clientXy.X * scale
+        y = clientXy.Y * scale
+
+        ' translate to RT,intensity
+        Dim view As Rectangle = viewClient.PlotRegion
+        Dim xaxis = d3js.scale.linear.domain(values:=New Double() {view.Left, view.Right}).range(values:=chromatography.TimeArray.CreateAxisTicks)
+        Dim yaxis = d3js.scale.linear.domain(values:=New Double() {view.Top, view.Bottom}).range(values:=chromatography.IntensityArray.CreateAxisTicks)
+
+        If x < view.Left Then
+            x = view.Left
+        ElseIf x > view.Right Then
+            x = view.Right
+        End If
+        If y < view.Top Then
+            y = view.Top
+        ElseIf y > view.Bottom Then
+            y = view.Bottom
+        End If
+
+        rt = xaxis(x)
+        intensity = yaxis(x)
+    End Sub
+
+    Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
+        Dim x, y As Integer
+        Dim rt, into As Double
+
+        Call TranslateViewLocation(x, y, rt, into)
+
+        Using g As Graphics = PictureBox1.CreateGraphics
+            Dim a As New Point(x, plotPadding.Top)
+            Dim b As New Point(x, PictureBox1.Height * scale - plotPadding.Bottom)
+
+            Call g.DrawLine(Pens.Red, a, b)
+            Call g.DrawString($"RT: {(rt / 60).ToString("F1")}min, intensity: {into.ToString("G4")}", New Font(FontFace.SegoeUI, 16), Brushes.Red, New PointF(x, y))
+        End Using
     End Sub
 End Class
