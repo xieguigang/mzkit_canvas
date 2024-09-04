@@ -13,7 +13,7 @@ Public Class ChromatographyViewer
     ''' all Chromatography data points
     ''' </summary>
     Dim chromatography As ChromatogramTick()
-    Dim plotPadding As Padding = $"padding: 50px 50px 150px 150px;"
+    Dim plotPadding As Padding = $"padding: 25px 25px 100px 100px;"
     Dim scaleFactor As Double = 2
 
     Public Property XLabel As String = "Rentention Time(s)"
@@ -41,7 +41,8 @@ Public Class ChromatographyViewer
         Dim chromatography As TICplot
         Dim theme As New Theme With {
             .padding = plotPadding.ToString,
-            .drawLabels = True
+            .drawLabels = True,
+            .tagCSS = "font-style: normal; font-size: 24; font-family: " & FontFace.BookmanOldStyle & ";"
         }
         Dim size_str As String = $"{PictureBox1.Width * scaleFactor},{PictureBox1.Height * scaleFactor}"
         Dim title As String = Me.Title
