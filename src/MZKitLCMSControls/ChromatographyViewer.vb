@@ -13,7 +13,7 @@ Public Class ChromatographyViewer
     ''' all Chromatography data points
     ''' </summary>
     Dim chromatography As ChromatogramTick()
-    Dim plotPadding As Padding = $"padding: 100px 100px 200px 250px;"
+    Dim plotPadding As Padding = $"padding: 50px 50px 150px 150px;"
     Dim scaleFactor As Double = 2
 
     Public Property XLabel As String = "Rentention Time(s)"
