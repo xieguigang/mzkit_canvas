@@ -31,6 +31,12 @@ Public Class ChromatographyViewer
     ''' <returns></returns>
     Public Property Overlaps As NamedCollection(Of ChromatogramTick)()
 
+    Public ReadOnly Property ChromatographyData As ChromatogramTick()
+        Get
+            Return chromatography.ToArray
+        End Get
+    End Property
+
     Public ReadOnly Property ChromatographyPlot As Image
         Get
             Return PictureBox1.BackgroundImage
