@@ -101,7 +101,7 @@ Public Class ChromatographyViewer
         y = clientXy.Y * scaleFactor
 
         ' translate to RT,intensity
-        Dim view As Rectangle = viewClient.PlotRegion
+        Dim view As Rectangle = viewClient.PlotRegion(New CSSEnvirnment(viewClient.Size))
         Dim xaxis = d3js.scale.linear.domain(values:=New Double() {view.Left, view.Right}).range(values:=chromatography.TimeArray.CreateAxisTicks)
         Dim yaxis = d3js.scale.linear.domain(values:=New Double() {view.Top, view.Bottom}).range(values:=chromatography.IntensityArray.CreateAxisTicks)
 
