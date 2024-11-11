@@ -142,6 +142,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\Math\Math\Math.NET5.vbproj">
+      <Project>{97d9e80d-6686-4b72-bd68-8867b680b27e}</Project>
+      <Name>Math.NET5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj">
       <Project>{f63a6c16-cdad-4623-bf4d-1ec334b03845}</Project>
       <Name>Core</Name>
