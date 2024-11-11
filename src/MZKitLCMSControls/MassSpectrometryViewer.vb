@@ -55,7 +55,12 @@
 #End Region
 
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
+Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
+Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas
+Imports Microsoft.VisualBasic.Drawing
+Imports Microsoft.VisualBasic.Imaging.Drawing2D
+Imports Microsoft.VisualBasic.Imaging.Driver
 
 Public Class MassSpectrometryViewer
 
@@ -92,9 +97,44 @@ Public Class MassSpectrometryViewer
     Dim m_title As String
     Dim m_spectrum As ms2()
     Dim m_massrange As DoubleRange
+    Dim m_theme As New Theme
 
     Private Sub Rendering()
+        If m_spectrum Is Nothing Then
+            Return
+        End If
+        If m_massrange Is Nothing Then
+            Return
+        End If
 
+        Dim scale As Double = 1.5
+        Dim size As New Size(Width * scale, Height * scale)
+
+        Using g As Graphics2D = size.CreateGDIDevice(BackColor)
+            Dim canvas As New PeakAssign(Title, m_spectrum, "red", 0.3, m_theme)
+            Dim region As New GraphicsRegion(m_theme.padding, size)
+
+            Call canvas.Plot(g, region)
+            Call g.Flush()
+
+            PictureBox1.BackgroundImage = g.ImageResource
+        End Using
+    End Sub
+
+    Public Sub SetSpectrum(m As LibraryMatrix)
+        m_title = m.name
+        m_spectrum = m.Array
+        m_massrange = m_spectrum.Select(Function(mi) mi.mz).Range
+
+        Call Rendering()
+    End Sub
+
+    Public Sub SetSpectrum(m As PeakMs2)
+        m_title = m.lib_guid
+        m_spectrum = m.mzInto
+        m_massrange = m_spectrum.Select(Function(mi) mi.mz).Range
+
+        Call Rendering()
     End Sub
 
 End Class
