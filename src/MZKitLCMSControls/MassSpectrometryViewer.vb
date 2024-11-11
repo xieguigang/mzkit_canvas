@@ -143,5 +143,8 @@ Public Class MassSpectrometryViewer
         Call Rendering()
     End Sub
 
+    Private Sub MassSpectrometryViewer_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
+        Call Rendering()
+    End Sub
 End Class
 
