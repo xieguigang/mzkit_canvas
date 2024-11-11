@@ -99,6 +99,12 @@ Public Class MassSpectrometryViewer
     Dim m_massrange As DoubleRange
     Dim m_theme As New Theme
 
+    Public ReadOnly Property SpectrumPlot As Image
+        Get
+            Return PictureBox1.BackgroundImage
+        End Get
+    End Property
+
     Private Sub Rendering()
         If m_spectrum Is Nothing Then
             Return
