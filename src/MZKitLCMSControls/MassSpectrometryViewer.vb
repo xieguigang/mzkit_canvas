@@ -59,8 +59,10 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas
 Imports Microsoft.VisualBasic.Drawing
+Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Driver
+Imports Microsoft.VisualBasic.MIME.Html.CSS
 
 Public Class MassSpectrometryViewer
 
@@ -105,6 +107,14 @@ Public Class MassSpectrometryViewer
         End Get
     End Property
 
+    Dim scaleFactor As Single = 1.125
+    Dim scaleX As d3js.scale.LinearScale
+    Dim scaleY As d3js.scale.LinearScale
+    Dim paddingLayout As PaddingLayout
+
+    Dim scaleMz As d3js.scale.LinearScale
+    Dim scaleInto As d3js.scale.LinearScale
+
     Private Sub Rendering()
         If m_spectrum Is Nothing Then
             Return
@@ -113,12 +123,24 @@ Public Class MassSpectrometryViewer
             Return
         End If
 
-        Dim scale As Double = 1.5
-        Dim size As New Size(Width * scale, Height * scale)
+        Dim size As New Size(Width * scaleFactor, Height * scaleFactor)
+        Dim paddingCss = CType(m_theme.padding, Padding)
+        Dim css As New CSSEnvirnment(size)
+        Dim region As New GraphicsRegion(paddingCss, size)
+        Dim rect = region.PlotRegion(css)
+
+        paddingLayout = PaddingLayout.EvaluateFromCSS(css, paddingCss)
+
+        Dim realX = paddingLayout.Left / scaleFactor
+        Dim realY = paddingLayout.Top / scaleFactor
+
+        scaleX = d3js.scale.linear().domain(values:={realX, rect.Width / scaleFactor + realX}).range(paddingLayout.Left, rect.Width + paddingLayout.Left)
+        scaleY = d3js.scale.linear().domain(values:={realY, rect.Height / scaleFactor + realY}).range(paddingLayout.Top, rect.Height + paddingLayout.Top)
+        scaleMz = d3js.scale.linear.domain(values:={paddingLayout.Left, rect.Width + paddingLayout.Left}).range(values:=PeakAssign.CreateXMzAxisTicks(m_spectrum))
+        scaleInto = d3js.scale.linear.domain(values:={paddingLayout.Top, rect.Height + paddingLayout.Top}).range(values:={0, 110})
 
         Using g As Graphics2D = size.CreateGDIDevice(BackColor)
             Dim canvas As New PeakAssign(Title, m_spectrum, "red", 0.3, m_theme)
-            Dim region As New GraphicsRegion(m_theme.padding, size)
 
             Call canvas.Plot(g, region)
             Call g.Flush()
@@ -145,6 +167,39 @@ Public Class MassSpectrometryViewer
 
     Private Sub MassSpectrometryViewer_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
         Call Rendering()
+    End Sub
+
+    Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
+        Dim fp = PictureBox1.PointToClient(Cursor.Position)
+        Dim mz = scaleX(fp.X) - paddingLayout.Left
+        Dim into = scaleY(fp.Y) - paddingLayout.Top
+
+        If mz < 0 OrElse into < 0 Then
+            Call ToolTip1.SetToolTip(PictureBox1, Nothing)
+        Else
+            mz = scaleMz(mz)
+            into = scaleInto(into)
+
+            Call ToolTip1.SetToolTip(PictureBox1, $"m/z {mz.ToString("F4")} [{into}%]")
+        End If
+    End Sub
+
+    Private Sub PictureBox1_Paint(sender As Object, e As PaintEventArgs) Handles PictureBox1.Paint
+        Dim fp = PictureBox1.PointToClient(Cursor.Position)
+        Dim mz = scaleX(fp.X) - paddingLayout.Left
+        Dim into = scaleY(fp.Y) - paddingLayout.Top
+
+        If mz < 0 OrElse into < 0 Then
+        Else
+            Dim size As New Size(Width * scaleFactor, Height * scaleFactor)
+            Dim paddingCss = CType(m_theme.padding, Padding)
+            Dim css As New CSSEnvirnment(size)
+            Dim region As New GraphicsRegion(paddingCss, size)
+            Dim rect = region.PlotRegion(css)
+
+            Call e.Graphics.DrawLine(Pens.Red, paddingLayout.Left / scaleFactor, fp.Y, paddingLayout.Left / scaleFactor + rect.Width / scaleFactor, fp.Y)
+
+        End If
     End Sub
 End Class
 
