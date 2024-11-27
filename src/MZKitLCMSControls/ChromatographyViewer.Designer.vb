@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::61a5b01617ef015977daa5bca7ecf6f5, mzkit\ux\Canvas\src\MZKitLCMSControls\ChromatographyViewer.Designer.vb"
+﻿#Region "Microsoft.VisualBasic::7f63328f6467780459bc7cf21cc7ade8, mzkit\ux\Canvas\src\MZKitLCMSControls\ChromatographyViewer.Designer.vb"
 
     ' Author:
     ' 
@@ -106,4 +106,3 @@ Partial Class ChromatographyViewer
     Friend WithEvents PictureBox1 As PictureBox
 
 End Class
-

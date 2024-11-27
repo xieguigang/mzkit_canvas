@@ -1,56 +1,58 @@
-﻿#Region "Microsoft.VisualBasic::38bfe84ae130e4f357215f58404dcacb, mzkit\ux\Canvas\src\MZKitLCMSControls\MassSpectrometryViewer.vb"
+﻿#Region "Microsoft.VisualBasic::cf9e16c2925612d0f681491fcee3d426, mzkit\ux\Canvas\src\MZKitLCMSControls\MassSpectrometryViewer.vb"
 
-' Author:
-' 
-'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-' 
-' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-' 
-' 
-' MIT License
-' 
-' 
-' Permission is hereby granted, free of charge, to any person obtaining a copy
-' of this software and associated documentation files (the "Software"), to deal
-' in the Software without restriction, including without limitation the rights
-' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-' copies of the Software, and to permit persons to whom the Software is
-' furnished to do so, subject to the following conditions:
-' 
-' The above copyright notice and this permission notice shall be included in all
-' copies or substantial portions of the Software.
-' 
-' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-' SOFTWARE.
-
-
-
-' /********************************************************************************/
-
-' Summaries:
+    ' Author:
+    ' 
+    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+    ' 
+    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+    ' 
+    ' 
+    ' MIT License
+    ' 
+    ' 
+    ' Permission is hereby granted, free of charge, to any person obtaining a copy
+    ' of this software and associated documentation files (the "Software"), to deal
+    ' in the Software without restriction, including without limitation the rights
+    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    ' copies of the Software, and to permit persons to whom the Software is
+    ' furnished to do so, subject to the following conditions:
+    ' 
+    ' The above copyright notice and this permission notice shall be included in all
+    ' copies or substantial portions of the Software.
+    ' 
+    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    ' SOFTWARE.
 
 
-' Code Statistics:
 
-'   Total Lines: 3
-'    Code Lines: 2 (66.67%)
-' Comment Lines: 0 (0.00%)
-'    - Xml Docs: 0.00%
-' 
-'   Blank Lines: 1 (33.33%)
-'     File Size: 50 B
+    ' /********************************************************************************/
+
+    ' Summaries:
 
 
-' Class MassSpectrometryViewer
-' 
-' 
-' 
-' /********************************************************************************/
+    ' Code Statistics:
+
+    '   Total Lines: 148
+    '    Code Lines: 120 (81.08%)
+    ' Comment Lines: 0 (0.00%)
+    '    - Xml Docs: 0.00%
+    ' 
+    '   Blank Lines: 28 (18.92%)
+    '     File Size: 5.25 KB
+
+
+    ' Class MassSpectrometryViewer
+    ' 
+    '     Properties: MassRange, Spectrum, SpectrumPlot, Title
+    ' 
+    '     Sub: MassSpectrometryViewer_SizeChanged, PictureBox1_MouseMove, PictureBox1_Paint, Rendering, (+2 Overloads) SetSpectrum
+    ' 
+    ' /********************************************************************************/
 
 #End Region
 
@@ -202,4 +204,3 @@ Public Class MassSpectrometryViewer
         End If
     End Sub
 End Class
-

@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::ec48dc9284be1602c2c4e73904607d1a, mzkit\ux\Canvas\src\MZKitLCMSControls\ChromatographyViewer.vb"
+﻿#Region "Microsoft.VisualBasic::62ae0d0baf7bee3997b37fce255d0224, mzkit\ux\Canvas\src\MZKitLCMSControls\ChromatographyViewer.vb"
 
     ' Author:
     ' 
@@ -43,7 +43,7 @@
     '    - Xml Docs: 91.67%
     ' 
     '   Blank Lines: 27 (19.42%)
-    '     File Size: 5.32 KB
+    '     File Size: 5.31 KB
 
 
     ' Class ChromatographyViewer
@@ -197,4 +197,3 @@ Public Class ChromatographyViewer
         End Using
     End Sub
 End Class
-

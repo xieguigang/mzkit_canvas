@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::6b250c25bac96f4712d8d918bb5ccb16, mzkit\ux\Canvas\src\MZKitLCMSControls\MassSpectrometryViewer.Designer.vb"
+﻿#Region "Microsoft.VisualBasic::b6aa3af477116562dc3057336fb77466, mzkit\ux\Canvas\src\MZKitLCMSControls\MassSpectrometryViewer.Designer.vb"
 
     ' Author:
     ' 
@@ -37,13 +37,13 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 52
-    '    Code Lines: 36 (69.23%)
-    ' Comment Lines: 11 (21.15%)
+    '   Total Lines: 58
+    '    Code Lines: 42 (72.41%)
+    ' Comment Lines: 11 (18.97%)
     '    - Xml Docs: 0.00%
     ' 
-    '   Blank Lines: 5 (9.62%)
-    '     File Size: 1.85 KB
+    '   Blank Lines: 5 (8.62%)
+    '     File Size: 2.44 KB
 
 
     ' Class MassSpectrometryViewer
@@ -112,4 +112,3 @@ Partial Class MassSpectrometryViewer
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents ToolTip1 As ToolTip
 End Class
-
