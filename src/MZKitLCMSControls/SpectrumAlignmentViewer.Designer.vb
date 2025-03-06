@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::99c04c1be81baab8b02d4debef4341c9, mzkit\ux\Canvas\src\MZKitLCMSControls\SpectrumAlignmentViewer.Designer.vb"
+﻿#Region "Microsoft.VisualBasic::680dc6c62b1eceb22b9e818b6ae7be7b, mzkit\ux\Canvas\src\MZKitLCMSControls\SpectrumAlignmentViewer.Designer.vb"
 
     ' Author:
     ' 
@@ -83,4 +83,3 @@ Partial Class SpectrumAlignmentViewer
     End Sub
 
 End Class
-

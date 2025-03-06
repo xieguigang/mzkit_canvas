@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::4808f87b5dbd53c19a069cfcdbbe8018, mzkit\ux\Canvas\src\MZKitLCMSControls\SpectrumAlignmentViewer.vb"
+﻿#Region "Microsoft.VisualBasic::8585ba04d4e6336278a510d27d9ed85b, mzkit\ux\Canvas\src\MZKitLCMSControls\SpectrumAlignmentViewer.vb"
 
     ' Author:
     ' 
@@ -43,7 +43,7 @@
     '    - Xml Docs: 0.00%
     ' 
     '   Blank Lines: 6 (28.57%)
-    '     File Size: 453 B
+    '     File Size: 451 B
 
 
     ' Class SpectrumAlignmentViewer
@@ -77,4 +77,3 @@ Public Class SpectrumAlignmentViewer
     End Sub
 
 End Class
-
