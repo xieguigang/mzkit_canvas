@@ -187,6 +187,11 @@ Public Class MassSpectrometryViewer
 
     Private Sub PictureBox1_Paint(sender As Object, e As PaintEventArgs) Handles PictureBox1.Paint
         Dim fp = PictureBox1.PointToClient(Cursor.Position)
+
+        If scaleX Is Nothing OrElse scaleY Is Nothing Then
+            Return
+        End If
+
         Dim mz = scaleX(fp.X) - paddingLayout.Left
         Dim into = scaleY(fp.Y) - paddingLayout.Top
 
