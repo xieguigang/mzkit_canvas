@@ -519,10 +519,20 @@ Public Class PeakScatterViewer
         HtmlView = True
     End Sub
 
+    Dim webUrl As String
+
+    ''' <summary>
+    ''' $"http://127.0.0.1:{Workbench.WebPort}/LCMS-scatter.html"
+    ''' </summary>
+    ''' <param name="url"></param>
+    Public Sub SetWebView(url As String)
+        webUrl = url
+    End Sub
+
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
         ' WebView21.CoreWebView2.OpenDevToolsWindow()
         Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", lcms_scatter)
-        Call WebView21.CoreWebView2.Navigate($"http://127.0.0.1:{Workbench.WebPort}/LCMS-scatter.html")
+        Call WebView21.CoreWebView2.Navigate(webUrl)
         Call WebViewLoader.DeveloperOptions(WebView21, enable:=True,)
     End Sub
 

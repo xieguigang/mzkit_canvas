@@ -36,13 +36,19 @@ Public Class PeakFindingViewer
         Call InitPanel()
     End Sub
 
+    Dim GetPlotColors As Func(Of String)
+
+    Public Sub SetPlotColorReader(getter As Func(Of String))
+        getter = GetPlotColors
+    End Sub
+
     Private Sub plotMatrix(spline As Boolean, ParamArray result As NamedCollection(Of ChromatogramTick)())
         Dim size As Size = PictureBox1.Size
         Dim plot As Image = result _
             .TICplot(
                 intensityMax:=0,
                 isXIC:=True,
-                colorsSchema:=Workbench.GetPlotColors,
+                colorsSchema:=GetPlotColors(),
                 fillCurve:=True,
                 gridFill:="white",
                 spline:=If(spline, 3, 0),
@@ -208,13 +214,19 @@ Public Class PeakFindingViewer
         Call Clipboard.SetText(sb.ToString)
     End Sub
 
+    Dim OpenInTableViewer As Action(Of DataGridView)
+
+    Public Sub SetTableViewer(viewer As Action(Of DataGridView))
+        OpenInTableViewer = viewer
+    End Sub
+
     ''' <summary>
     ''' send to table viewer
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
-        Call PeakListViewer.OpenInTableViewer
+        Call OpenInTableViewer(PeakListViewer)
     End Sub
 
     ''' <summary>
@@ -247,7 +259,7 @@ Public Class PeakFindingViewer
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub SendToTableViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SendToTableViewerToolStripMenuItem.Click
-        Call PeakMatrixViewer.OpenInTableViewer
+        Call OpenInTableViewer(PeakMatrixViewer)
     End Sub
 
     ''' <summary>
