@@ -62,20 +62,25 @@
 
 Imports System.Drawing
 Imports System.IO
-Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
-Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.ChartPlots.Contour
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Math2D.MarchingSquares
 Imports Microsoft.VisualBasic.Imaging.Driver
 Imports MZKitWin32.Blender.CommonLibs
-Imports Task
 
 Public Class CounterMatrix : Inherits DataMatrix
 
-    Public Sub New(name As String, raw As MZWork.Raw)
-        MyBase.New(name, raw.GetContourData)
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="name"></param>
+    ''' <param name="raw">
+    ''' GetContourData(Raw)
+    ''' </param>
+    Public Sub New(name As String, raw As ContourLayer())
+        MyBase.New(name, raw)
     End Sub
 
     Public Overrides ReadOnly Property UnderlyingType As Type

@@ -68,7 +68,6 @@ Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Imaging.Driver
 Imports Microsoft.VisualBasic.Linq
-Imports mzblender
 Imports MZKitWin32.Blender.CommonLibs
 
 Public Class ChromatogramOverlapMatrix : Inherits DataMatrix

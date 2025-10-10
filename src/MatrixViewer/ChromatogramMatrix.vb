@@ -68,7 +68,6 @@ Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Imaging.Driver
 Imports Microsoft.VisualBasic.Linq
-Imports mzblender
 Imports MZKitWin32.Blender.CommonLibs
 
 Public Class ChromatogramMatrix : Inherits DataMatrix

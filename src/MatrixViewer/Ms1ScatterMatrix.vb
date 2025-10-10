@@ -73,7 +73,11 @@ Imports MZKitWin32.Blender.CommonLibs
 Public Class Ms1ScatterMatrix : Inherits DataMatrix
 
     Public Sub New(name As String, raw As IMZPack)
-        MyBase.New(name, matrix:=raw.GetMs1Scans.GetMs1Points)
+        MyBase.New(name, matrix:=raw.MS.GetMs1Points)
+    End Sub
+
+    Sub New(name As String, raw As IEnumerable(Of ScanMS1))
+        Call MyBase.New(name, matrix:=raw.GetMs1Points)
     End Sub
 
     Sub New(name As String, scatter As IEnumerable(Of ms1_scan))
