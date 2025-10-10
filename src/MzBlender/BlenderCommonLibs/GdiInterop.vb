@@ -68,7 +68,7 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Driver
 #End If
 
-Module GdiInterop
+Public Module GdiInterop
 
     <Extension>
     Public Function CTypeGdiImage(image As Image) As System.Drawing.Image
