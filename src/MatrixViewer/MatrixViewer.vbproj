@@ -24,6 +24,8 @@
     <ProjectReference Include="..\..\..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\mime\text%html\html_netcore5.vbproj" />
     <ProjectReference Include="..\..\..\..\..\assembly\SignalReader\SignalReader.vbproj" />
     <ProjectReference Include="..\..\..\..\..\visualize\plot\MsPlot.NET5.vbproj" />
+    <ProjectReference Include="..\MzBlender\BlenderCommonLibs\BlenderCommonLibs.vbproj" />
+    <ProjectReference Include="..\MzBlender\mzblender\mzblender.vbproj" />
   </ItemGroup>
 
   <ItemGroup>
