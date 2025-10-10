@@ -1,6 +1,6 @@
 ﻿Imports System.Drawing.Drawing2D
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
-Imports CommonDialogs
+Imports Galaxy.Data.Visualization.CommonDialogs
 Imports Galaxy.Workbench
 Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.ComponentModel.Algorithm
@@ -16,7 +16,6 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports Microsoft.Web.WebView2.Core
-Imports Mzkit_win32.BasicMDIForm
 Imports std = System.Math
 
 ''' <summary>
@@ -490,7 +489,7 @@ Public Class PeakScatterViewer
                 .DoCall(AddressOf LoadPeaks2)
         End If
 
-        Workbench.StatusMessage($"Zoom-in of the sub-region: m/z range {mz0.ToString("F4")} ~ {mz1.ToString("F4")}, RT range {(rt0 / 60).ToString("F2")} ~ {(rt1 / 60).ToString("F2")}min.")
+        CommonRuntime.StatusMessage($"Zoom-in of the sub-region: m/z range {mz0.ToString("F4")} ~ {mz1.ToString("F4")}, RT range {(rt0 / 60).ToString("F2")} ~ {(rt1 / 60).ToString("F2")}min.")
     End Sub
 
     Private Sub ResetToolStripMenuItem_Click() Handles ResetToolStripMenuItem.Click
@@ -556,7 +555,7 @@ Public Class PeakScatterViewer
 
     Private Sub SavePlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SavePlotToolStripMenuItem.Click
         If PictureBox1.BackgroundImage Is Nothing Then
-            Call Workbench.Warning("no plot image!")
+            Call CommonRuntime.Warning("no plot image!")
             Return
         End If
 

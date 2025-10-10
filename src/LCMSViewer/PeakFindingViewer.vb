@@ -2,6 +2,8 @@
 Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
+Imports Galaxy.Data
+Imports Galaxy.Workbench
 Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
@@ -9,10 +11,10 @@ Imports Microsoft.VisualBasic.Data.Framework
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
-Imports Mzkit_win32.BasicMDIForm
 Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class PeakFindingViewer
+
     ''' <summary>
     ''' raw peaks data
     ''' </summary>
@@ -122,7 +124,7 @@ Public Class PeakFindingViewer
 
     Private Sub ViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewToolStripMenuItem.Click
         If PeakListViewer.SelectedRows.Count <= 0 Then
-            Call Workbench.Warning("Please select a row data for view content!")
+            Call CommonRuntime.Warning("Please select a row data for view content!")
             Return
         End If
 
