@@ -8,6 +8,7 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Driver
 Imports Microsoft.VisualBasic.Math
+Imports Microsoft.VisualBasic.Math.Interpolation
 
 ''' <summary>
 ''' ROI XIC group viewer
@@ -140,7 +141,7 @@ Public Class ROIGroupViewer
                                                 fillAlpha:=200,
                                                 fillCurve:=False,
                                                 labelLayoutTicks:=-1,
-                                                bspline:=2,
+                                                bspline:=New BSpline(2, 10),
                                                 theme:=theme) With {.xlabel = "", .ylabel = ""} _
                                             .Plot(unifySize, ppi:=200)
                                     End Function)
