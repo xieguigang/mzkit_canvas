@@ -142,7 +142,7 @@ Public Class ROIGroupViewer
                                                 labelLayoutTicks:=-1,
                                                 bspline:=2,
                                                 theme:=theme) With {.xlabel = "", .ylabel = ""} _
-                                        .Plot(unifySize, ppi:=200)
+                                            .Plot(unifySize, ppi:=200)
                                     End Function)
 
             viewers(i).Width = newWidth
