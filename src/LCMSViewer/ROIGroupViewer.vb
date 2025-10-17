@@ -36,8 +36,14 @@ Public Class ROIGroupViewer
     Dim mzErr As Tolerance = Tolerance.PPM(30)
 
     Public Property ROIViewerHeight As Integer = 100
+    Public Property smooth As New BSpline(2, 10)
 
     Public Event SelectFile(filename As String)
+
+    Public Async Function SetSmooth(spline As BSpline) As Task
+        smooth = spline
+        Await Rendering()
+    End Function
 
     Public Async Function SetMassDiff(err As Tolerance) As Task
         xicErr = err
@@ -141,7 +147,7 @@ Public Class ROIGroupViewer
                                                 fillAlpha:=200,
                                                 fillCurve:=False,
                                                 labelLayoutTicks:=-1,
-                                                bspline:=New BSpline(2, 10),
+                                                bspline:=smooth,
                                                 theme:=theme) With {.xlabel = "", .ylabel = ""} _
                                             .Plot(unifySize, ppi:=200)
                                     End Function)
