@@ -50,11 +50,17 @@ Public Class ROIGroupViewer
 
     Public Iterator Function GetXic() As IEnumerable(Of NamedCollection(Of ChromatogramTick))
         For Each file As NamedCollection(Of ms1_scan) In samples
-            Yield New NamedCollection(Of ChromatogramTick)(file.name, TakeXic(file))
+            Yield New NamedCollection(Of ChromatogramTick)(file.name, TakeXic(file, xicErr))
         Next
     End Function
 
-    Private Function TakeXic(file As NamedCollection(Of ms1_scan)) As IEnumerable(Of ChromatogramTick)
+    Public Iterator Function GetXic(mzdiff As Tolerance) As IEnumerable(Of NamedCollection(Of ChromatogramTick))
+        For Each file As NamedCollection(Of ms1_scan) In samples
+            Yield New NamedCollection(Of ChromatogramTick)(file.name, TakeXic(file, mzdiff))
+        Next
+    End Function
+
+    Private Function TakeXic(file As NamedCollection(Of ms1_scan), xicErr As Tolerance) As IEnumerable(Of ChromatogramTick)
         Return file _
             .AsParallel _
             .Where(Function(a) xicErr(a.mz, mz)) _
@@ -124,7 +130,7 @@ Public Class ROIGroupViewer
 
         ' make rendering of the sample files XIC group data
         For i As Integer = 0 To viewers.Length - 1
-            xic = TakeXic(DirectCast(viewers(i).Tag, NamedCollection(Of ms1_scan))).ToArray
+            xic = TakeXic(DirectCast(viewers(i).Tag, NamedCollection(Of ms1_scan)), xicErr).ToArray
             xic_data = New NamedCollection(Of ChromatogramTick)(DirectCast(viewers(i).Tag, NamedCollection(Of ms1_scan)).name, xic)
             render = Await Task.Run(Function()
                                         Return New TICplot(xic_data,
