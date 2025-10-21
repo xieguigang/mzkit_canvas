@@ -37,6 +37,7 @@ Public Class ROIGroupViewer
 
     Public Property ROIViewerHeight As Integer = 100
     Public Property smooth As New BSpline(2, 10)
+    Public Property ROIs As Dictionary(Of String, PeakFeature)
 
     Public Event SelectFile(filename As String)
 
@@ -168,6 +169,7 @@ Public Class ROIGroupViewer
             Return
         End If
 
+        Dim roi As PeakFeature = ROIs.TryGetValue(current.name)
         Dim scale As Double = 2.5
         Dim size As String = $"{PictureBox1.Width * scale},{PictureBox1.Height * scale}"
         Dim render As Func(Of Image) =
@@ -182,7 +184,8 @@ Public Class ROIGroupViewer
                     current, mz, xicErr,
                     theme:=theme,
                     mzErr:=mzErr,
-                    mzdiff:=0.0001
+                    mzdiff:=0.0001,
+                    roi:=roi
                 )
 
                 Return density _
