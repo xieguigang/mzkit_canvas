@@ -160,6 +160,8 @@ Public Class ROIGroupViewer
         Await RenderingSelection()
     End Function
 
+    Public Property ROIFill As Brush
+
     ''' <summary>
     ''' Make render xic and scatter
     ''' </summary>
@@ -186,7 +188,7 @@ Public Class ROIGroupViewer
                     mzErr:=mzErr,
                     mzdiff:=0.0001,
                     roi:=roi
-                )
+                ) With {.ROIFillColor = ROIFill}
 
                 Return density _
                     .Plot(size, ppi:=120, driver:=Drivers.GDI) _
