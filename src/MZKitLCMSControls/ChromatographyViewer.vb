@@ -65,6 +65,7 @@ Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Axis
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
+Imports Microsoft.VisualBasic.Math.Interpolation
 Imports Microsoft.VisualBasic.MIME.Html.CSS
 
 Public Class ChromatographyViewer
@@ -113,6 +114,7 @@ Public Class ChromatographyViewer
         }
         Dim size_str As String = $"{PictureBox1.Width * scaleFactor},{PictureBox1.Height * scaleFactor}"
         Dim title As String = Me.Title
+        Dim smooth As New BSpline(2)
 
         If Me.chromatography.IsNullOrEmpty Then
             Return
@@ -123,10 +125,23 @@ Public Class ChromatographyViewer
         End If
 
         If Overlaps.IsNullOrEmpty Then
-            chromatography = New TICplot(New NamedCollection(Of ChromatogramTick)(title, Me.chromatography), Nothing, 0, isXIC:=True, fillAlpha:=255, fillCurve:=False, labelLayoutTicks:=-1, bspline:=2, theme:=theme)
+            chromatography = New TICplot(New NamedCollection(Of ChromatogramTick)(title, Me.chromatography), Nothing, 0,
+                                         isXIC:=True,
+                                         fillAlpha:=255,
+                                         fillCurve:=False,
+                                         labelLayoutTicks:=-1,
+                                         bspline:=smooth,
+                                         theme:=theme)
         Else
             Dim overlaps = _Overlaps.Join(New NamedCollection(Of ChromatogramTick)(title, Me.chromatography))
-            chromatography = New TICplot(overlaps, Nothing, 0, isXIC:=True, fillAlpha:=255, fillCurve:=False, labelLayoutTicks:=-1, bspline:=2, theme:=theme)
+
+            chromatography = New TICplot(overlaps, Nothing, 0,
+                                         isXIC:=True,
+                                         fillAlpha:=255,
+                                         fillCurve:=False,
+                                         labelLayoutTicks:=-1,
+                                         bspline:=smooth,
+                                         theme:=theme)
         End If
 
         chromatography.xlabel = XLabel
