@@ -2,6 +2,7 @@
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas
 Imports Microsoft.VisualBasic.Imaging
@@ -40,6 +41,12 @@ Public Class ROIGroupViewer
     Public Property ROIs As Dictionary(Of String, PeakFeature)
 
     Public Event SelectFile(filename As String)
+
+    Public ReadOnly Property LoadFiles As IEnumerable(Of String)
+        Get
+            Return samples.Keys
+        End Get
+    End Property
 
     Public Async Function SetSmooth(spline As BSpline) As Task
         smooth = spline
