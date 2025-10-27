@@ -142,11 +142,13 @@ Public Class ROIGroupViewer
         Dim xic_data As NamedCollection(Of ChromatogramTick)
         Dim unifySize As String = $"{newWidth * scale },{ROIViewerHeight * scale }"
         Dim render As GraphicsData
+        Dim roi As PeakFeature
 
         ' make rendering of the sample files XIC group data
         For i As Integer = 0 To viewers.Length - 1
             xic = TakeXic(DirectCast(viewers(i).Tag, NamedCollection(Of ms1_scan)), xicErr).ToArray
             xic_data = New NamedCollection(Of ChromatogramTick)(DirectCast(viewers(i).Tag, NamedCollection(Of ms1_scan)).name, xic)
+            roi = ROIs.TryGetValue(xic_data.name)
             render = Await Task.Run(Function()
                                         Return New TICplot(xic_data,
                                                 timeRange:=rt_range,
@@ -156,7 +158,12 @@ Public Class ROIGroupViewer
                                                 fillCurve:=False,
                                                 labelLayoutTicks:=-1,
                                                 bspline:=smooth,
-                                                theme:=theme) With {.xlabel = "", .ylabel = ""} _
+                                                theme:=theme) With {
+                                                    .xlabel = "",
+                                                    .ylabel = "",
+                                                    .ROI = roi,
+                                                    .ROIFill = ROIFill
+                                            } _
                                             .Plot(unifySize, ppi:=200)
                                     End Function)
 
