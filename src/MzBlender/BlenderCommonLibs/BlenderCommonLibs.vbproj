@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <RootNamespace>MZKitWin32.Blender.CommonLibs</RootNamespace>
-    <TargetFrameworks>net8.0-windows;net48</TargetFrameworks>
+    <TargetFrameworks>net8.0-windows</TargetFrameworks>
     <AssemblyName>MZKitWin32.Blender.CommonLibs</AssemblyName>
     <Platforms>AnyCPU;x64</Platforms>
     <Configurations>Debug;Release;mzkit_win32</Configurations>
