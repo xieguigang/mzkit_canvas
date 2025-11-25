@@ -322,7 +322,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Web.WebView2">
-      <Version>1.0.3537.50</Version>
+      <Version>1.0.3595.46</Version>
     </PackageReference>
     <PackageReference Include="System.Buffers">
       <Version>4.6.1</Version>
