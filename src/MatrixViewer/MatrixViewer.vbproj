@@ -9,6 +9,8 @@
     <OutputType>Library</OutputType>
     <UseApplicationFramework>True</UseApplicationFramework>
     <EnableVisualStyles>True</EnableVisualStyles>
+    <UseWindowsForms>true</UseWindowsForms>
+    <MyType>WindowsForms</MyType>
   </PropertyGroup>
 
   <ItemGroup>

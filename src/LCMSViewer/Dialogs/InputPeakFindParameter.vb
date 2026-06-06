@@ -1,4 +1,5 @@
-﻿Imports Galaxy.Data.TextValidates
+﻿Imports System.Windows.Forms
+Imports Galaxy.Data.TextValidates
 Imports Galaxy.Workbench.CommonDialogs
 
 Public Class InputPeakFindParameter : Inherits InputDialog
