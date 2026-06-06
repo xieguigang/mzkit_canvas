@@ -1,4 +1,6 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
+﻿Imports System.Drawing
+Imports System.Windows.Forms
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
