@@ -1,4 +1,5 @@
 ﻿Imports System.Drawing.Drawing2D
+Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports Galaxy.Data.Visualization.CommonDialogs
 Imports Galaxy.Workbench
@@ -252,8 +253,8 @@ Public Class PeakScatterViewer
 
             Yield New PointData With {
                 .pt = New PointF(m.scan_time, m.mz),
-                .value = m.intensity,
-                .tag = CInt(int_range.ScaleMapping(v, p)).ToString
+                .Value = m.intensity,
+                .Tag = CInt(int_range.ScaleMapping(v, p)).ToString
             }
         Next
     End Function
@@ -321,8 +322,8 @@ Public Class PeakScatterViewer
             Next
 
             Call New ColorMapLegend(ColorScale.Description, 30) With {
-                .foreColor = Color.Black,
-                .format = "G2",
+                .ForeColor = Color.Black,
+                .Format = "G2",
                 .noblank = True,
                 .tickAxisStroke = New Pen(Color.Black, 1),
                 .tickFont = tickFont,

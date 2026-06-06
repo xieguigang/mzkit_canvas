@@ -60,6 +60,7 @@
 
 #End Region
 
+Imports System.Data
 Imports System.Drawing
 Imports System.IO
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
