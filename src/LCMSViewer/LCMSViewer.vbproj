@@ -14,6 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\..\galaxy\src\GalaxyChartLibs\GalaxyChartLibs.vbproj" />
     <ProjectReference Include="..\..\..\..\..\..\..\galaxy\src\GalaxyData\GalaxyData.vbproj" />
     <ProjectReference Include="..\..\..\..\..\..\..\galaxy\src\GalaxyWorkbench\GalaxyWorkbench.vbproj" />
     <ProjectReference Include="..\..\..\..\..\..\..\galaxy\src\Microsoft.Windows.FeatureAPI\Microsoft.Windows.FeatureAPI.vbproj" />

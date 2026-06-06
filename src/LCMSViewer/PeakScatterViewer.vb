@@ -18,6 +18,7 @@ Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports Microsoft.Web.WebView2.Core
 Imports std = System.Math
+Imports System.Drawing
 
 ''' <summary>
 ''' mz@rt 2d scatter viewer

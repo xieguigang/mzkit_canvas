@@ -57,6 +57,7 @@
 
 #End Region
 
+Imports System.Drawing
 Imports System.Drawing.Drawing2D
 Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
