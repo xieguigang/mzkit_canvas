@@ -64,7 +64,6 @@ Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Drawing.CssInterop
 Imports Microsoft.VisualBasic.Imaging
 Imports MZKitWin32.Blender.CommonLibs
-Imports Image = System.Drawing.Image
 
 Public Class XIC3DBlender : Inherits Blender
 
@@ -75,7 +74,7 @@ Public Class XIC3DBlender : Inherits Blender
         Me.TICList = TICList.ToArray
     End Sub
 
-    Public Overrides Function Rendering(args As PlotProperty, target As Size) As Image
+    Public Overrides Function Rendering(args As PlotProperty, target As Size) As Microsoft.VisualBasic.Imaging.Image
         Dim render As New ScanVisual3D(scans:=TICList, angle:=60, fillCurve:=True, fillAlpha:=120, drawParallelAxis:=True, theme:=New Theme With {
             .colorSet = args.GetColorSetName,
             .gridFill = args.gridFill.ToHtmlColor,
@@ -91,6 +90,6 @@ Public Class XIC3DBlender : Inherits Blender
         }
         Dim visual = render.Plot($"{args.width},{args.height}", ppi:=100).AsGDIImage
 
-        Return visual.CTypeGdiImage
+        Return visual
     End Function
 End Class
