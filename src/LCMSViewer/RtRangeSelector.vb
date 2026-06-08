@@ -193,7 +193,7 @@ Public Class RtRangeSelector
                               fillColor As Color,
                               myself As Control)
 
-        Using TICcurve As New GraphicsPath
+        Using TICcurve As New System.Drawing.Drawing2D.GraphicsPath
             Dim height As Double = myself.Height
             Dim width As Double = myself.Width
             Dim scaleX = d3js.scale.linear.domain(values:={TIC_time.Min, TIC_time.Max}).range(values:=New Double() {0, width})
@@ -216,7 +216,7 @@ Public Class RtRangeSelector
 
             Call TICcurve.AddLine(x2, y2, x2, CSng(height))
             Call TICcurve.CloseAllFigures()
-            Call g.FillPath(New SolidBrush(fillColor), TICcurve)
+            Call g.FillPath(New System.Drawing.SolidBrush(fillColor), TICcurve)
         End Using
     End Sub
 
@@ -232,11 +232,11 @@ Public Class RtRangeSelector
         Dim right = {start, endPox}.Max
 
         Using g = Me.CreateGraphics
-            Call g.FillRectangle(New SolidBrush(BackColor), New RectangleF(0, 0, Width, Height))
+            Call g.FillRectangle(New System.Drawing.SolidBrush(BackColor), New RectangleF(0, 0, Width, Height))
             Call DrawTIC(g)
 
             If onSelect OrElse AllowMoveRange Then
-                Call g.FillRectangle(New SolidBrush(SelectedColor.Alpha(125)), New RectangleF(left, 0, right - left, Height))
+                Call g.FillRectangle(New System.Drawing.SolidBrush(SelectedColor.Alpha(125)), New RectangleF(left, 0, right - left, Height))
             End If
         End Using
 

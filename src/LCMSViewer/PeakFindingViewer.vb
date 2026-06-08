@@ -1,4 +1,5 @@
-﻿Imports System.IO
+﻿Imports System.Drawing
+Imports System.IO
 Imports System.Text
 Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
@@ -45,7 +46,7 @@ Public Class PeakFindingViewer
 
     Private Sub plotMatrix(spline As Boolean, ParamArray result As NamedCollection(Of ChromatogramTick)())
         Dim size As Size = PictureBox1.Size
-        Dim plot As Image = result _
+        Dim plot As System.Drawing.Image = result _
             .TICplot(
                 intensityMax:=0,
                 isXIC:=True,

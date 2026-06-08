@@ -1,4 +1,6 @@
 ﻿
+Imports System.Drawing
+Imports System.Runtime.CompilerServices
 Imports System.Runtime.InteropServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports Microsoft.VisualBasic.ComponentModel.Algorithm
@@ -50,6 +52,7 @@ Public Class LCMSScatter
                           End Function)
     End Sub
 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Sub LoadMesh(rawdata As Meta(), Optional n As Integer = 500)
         Me.rawdata = MeshGrid(rawdata, n) _
             .ToDictionary(Function(m)
@@ -73,7 +76,7 @@ Public Class LCMSScatter
                 .BSpline(degree:=3) _
                 .ToArray
 
-            Call Application.DoEvents()
+            Call System.Windows.Forms.Application.DoEvents()
 
             For Each p As PointF In line
                 Yield New Meta With {
@@ -95,7 +98,7 @@ Public Class LCMSScatter
                 .BSpline(degree:=3) _
                 .ToArray
 
-            Call Application.DoEvents()
+            Call System.Windows.Forms.Application.DoEvents()
 
             For Each p As PointF In line
                 Yield New Meta With {

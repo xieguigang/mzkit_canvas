@@ -12,6 +12,9 @@ Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
+Imports Brushes = Microsoft.VisualBasic.Imaging.Brushes
+Imports Font = Microsoft.VisualBasic.Imaging.Font
+Imports SolidBrush = Microsoft.VisualBasic.Imaging.SolidBrush
 Imports std = System.Math
 
 Public Class XICFeatureViewer
@@ -86,7 +89,7 @@ Public Class XICFeatureViewer
 
             If mouse_cur.X > 0 AndAlso mouse_cur.X < size.Width Then
                 Dim rt As Double = width.ScaleMapping(mouse_cur.X, time_range)
-                Dim font As Font = Me.Font
+                Dim font As New Font(Me.Font.Name, Me.Font.Size, Me.Font.Style)
                 Dim label As String = $"{CInt(rt)} sec [{(rt / 60).ToString("F2")}min]"
                 Dim font_size As SizeF = g.MeasureString(label)
 
@@ -152,7 +155,7 @@ Public Class XICFeatureViewer
             Dim scale As Double = 8.5
             Dim msLib As New LibraryMatrix(peak.lib_guid, peak.mzInto)
             Dim size As New Size(PictureBox2.Width * scale, PictureBox2.Height * scale)
-            Dim plot As Image = PeakAssign _
+            Dim plot As System.Drawing.Image = PeakAssign _
                 .DrawSpectrumPeaks(msLib, size:=$"{size.Width},{size.Height}", dpi:=200) _
                 .AsGDIImage
 

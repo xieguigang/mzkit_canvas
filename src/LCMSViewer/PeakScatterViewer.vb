@@ -1,4 +1,4 @@
-﻿Imports System.Drawing.Drawing2D
+﻿Imports System.Drawing
 Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports Galaxy.Data.Visualization.CommonDialogs
@@ -17,8 +17,13 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports Microsoft.Web.WebView2.Core
+Imports Brush = Microsoft.VisualBasic.Imaging.Brush
+Imports Brushes = Microsoft.VisualBasic.Imaging.Brushes
+Imports DashStyle = Microsoft.VisualBasic.Imaging.DashStyle
+Imports Font = Microsoft.VisualBasic.Imaging.Font
+Imports Padding = Microsoft.VisualBasic.MIME.Html.CSS.Padding
+Imports Pen = Microsoft.VisualBasic.Imaging.Pen
 Imports std = System.Math
-Imports System.Drawing
 
 ''' <summary>
 ''' mz@rt 2d scatter viewer
@@ -509,8 +514,8 @@ Public Class PeakScatterViewer
             If y0 > y1 Then y1.Swap(y1)
 
             Dim rect As New Rectangle(PictureBox1.PointToClient(New Point(x0, y0)), New Size(x1 - x0, y1 - y0))
-            Dim pen As New Pen(Color.Red, 2) With {
-                .DashStyle = DashStyle.Dot
+            Dim pen As New System.Drawing.Pen(Color.Red, 2) With {
+                .DashStyle = System.Drawing.Drawing2D.DashStyle.Dot
             }
 
             Call e.Graphics.DrawRectangle(pen, rect)
