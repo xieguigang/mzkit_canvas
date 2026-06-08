@@ -10,6 +10,7 @@ Imports Galaxy.Workbench.CommonDialogs
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.Framework
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
@@ -55,7 +56,7 @@ Public Class PeakFindingViewer
                 gridFill:="white",
                 spline:=If(spline, 3, 0),
                 size:=$"{size.Width * 1.5},{size.Height * 1.5}"
-            ).AsGDIImage
+            ).AsGDIImage.CTypeGdiImage
 
         bspline = spline
         plotMatrixList = result

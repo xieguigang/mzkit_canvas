@@ -6,6 +6,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas
+Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Driver
@@ -169,7 +170,7 @@ Public Class ROIGroupViewer
                                     End Function)
 
             viewers(i).Width = newWidth
-            viewers(i).BackgroundImage = render.AsGDIImage
+            viewers(i).BackgroundImage = render.AsGDIImage.CTypeGdiImage
         Next
 
         Await RenderingSelection()
@@ -210,7 +211,7 @@ Public Class ROIGroupViewer
                     .AsGDIImage
             End Function
 
-        PictureBox1.BackgroundImage = Await Task.Run(render)
+        PictureBox1.BackgroundImage = (Await Task.Run(render)).CTypeGdiImage
     End Function
 
     Private Async Sub ROIGroupViewer_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged

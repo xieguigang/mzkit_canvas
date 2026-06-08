@@ -97,7 +97,7 @@ Public Class XICFeatureViewer
                 Call g.DrawString(label, font, Brushes.Red, New PointF(mouse_cur.X - font_size.Width / 2, 1))
             End If
 
-            canvasXIC.BackgroundImage = g.ImageResource
+            canvasXIC.BackgroundImage = g.CTypeGdiImage
         End Using
     End Sub
 
@@ -157,7 +157,7 @@ Public Class XICFeatureViewer
             Dim size As New Size(PictureBox2.Width * scale, PictureBox2.Height * scale)
             Dim plot As System.Drawing.Image = PeakAssign _
                 .DrawSpectrumPeaks(msLib, size:=$"{size.Width},{size.Height}", dpi:=200) _
-                .AsGDIImage
+                .AsGDIImage.CTypeGdiImage
 
             selected_peak = peak
             PictureBox2.BackgroundImage = plot

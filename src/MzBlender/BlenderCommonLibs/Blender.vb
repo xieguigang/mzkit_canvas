@@ -66,6 +66,6 @@ Public MustInherit Class Blender
     ''' the size of the target control to show the rednering image result.
     ''' </param>
     ''' <returns></returns>
-    Public MustOverride Function Rendering(args As PlotProperty, target As Size) As Image
+    Public MustOverride Function Rendering(args As PlotProperty, target As Size) As Microsoft.VisualBasic.Imaging.Image
 
 End Class

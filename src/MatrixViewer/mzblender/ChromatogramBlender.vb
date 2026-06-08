@@ -63,7 +63,6 @@ Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports MZKitWin32.Blender.CommonLibs
-Imports Image = System.Drawing.Image
 
 Public Class ChromatogramBlender : Inherits Blender
 
@@ -79,7 +78,7 @@ Public Class ChromatogramBlender : Inherits Blender
         Call Me.New({New NamedCollection(Of ChromatogramTick)(name, ticks)})
     End Sub
 
-    Public Overrides Function Rendering(args As PlotProperty, target As Size) As Image
+    Public Overrides Function Rendering(args As PlotProperty, target As Size) As Microsoft.VisualBasic.Imaging.Image
         Return ChromatogramPlot.TICplot(
             ionData:=TICList.ToArray,
             colorsSchema:=args.GetColorSetName,
@@ -96,6 +95,6 @@ Public Class ChromatogramBlender : Inherits Blender
             labelFontStyle:=args.label_font.CreateCss.ToString,
             labelLayoutTicks:=-1,
             legend_split:=args.legend_block_size
-        ).AsGDIImage.CTypeGdiImage
+        ).AsGDIImage
     End Function
 End Class

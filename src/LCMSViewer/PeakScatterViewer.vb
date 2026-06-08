@@ -341,7 +341,7 @@ Public Class PeakScatterViewer
                 .unmapColor = Nothing
             }.Draw(g, New Rectangle(rect.Right + 10, rect.Top, (defineSize.Width - rect.Right) / 2, rect.Height))
 
-            PictureBox1.BackgroundImage = DirectCast(g, GdiRasterGraphics).ImageResource
+            PictureBox1.BackgroundImage = DirectCast(g, GdiRasterGraphics).CTypeGdiImage
         End Using
     End Sub
 
