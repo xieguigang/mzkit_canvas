@@ -13,6 +13,10 @@
     <UseWPF>True</UseWPF>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);WFO1000</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\..\..\galaxy\src\GalaxyChartLibs\GalaxyChartLibs.vbproj" />
     <ProjectReference Include="..\..\..\..\..\..\..\galaxy\src\GalaxyData\GalaxyData.vbproj" />
