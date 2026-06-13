@@ -101,7 +101,7 @@ Public Class PeakFindingViewer
                 roi.time.Min.ToString("F2"),
                 roi.time.Max.ToString("F2"),
                 roi.rt.ToString("F2"),
-                roi.peakWidth.ToString("F2"),
+                roi.peak_width.ToString("F2"),
                 roi.maxInto.ToString("G3"),
                 roi.ticks.Length,
                 roi.baseline.ToString("G3"),
